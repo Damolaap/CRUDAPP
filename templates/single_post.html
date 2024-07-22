@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/single_post.css' %}">
+    
+</head>
+<body>
+    <div class="home-container">
+        <div class="content">
+            <div class="posts">
+                <div class="post">
+                    <div class="post-title">{{ post.post_title }}</div>
+                    <div class="post-content">{{ post.post_body }}</div>
+                    <div class="post-date" style="text-align: right;">Posted: {{ post.date_posted }}</div>
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+
+                        <textarea name="comment" id="" placeholder="Add a comment" rows="4" cols="50"></textarea><br>
+                        <input type="email" name="email" placeholder="Email"><br>
+                        <input type="submit" value="Submit Comment">
+                    </form>
+                </div>
+                
+                <div class="post">
+                    {% for comment in comments %}
+                    <div class="post-title">From: {{ comment.email }}</div>
+                    <div class="post-content">{{comment.comment}}</div>
+                    {% endfor %}
+                </div>       
+            </div>
+        </div>
+    </div>
+</body>
+</html>

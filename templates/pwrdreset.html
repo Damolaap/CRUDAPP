@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+    <link rel="stylesheet" href="{% static 'css/pwrdreset.css' %}">
+</head>
+<body>
+    <div class="reset-container">
+        <h1>Reset Password</h1>
+        <div class="links">
+            <a href="/index/">Home</a>
+        </div>
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="npwrd">New Password</label>
+                <input type="password" name="npwrd" placeholder="Enter new password" required>
+            </div>
+            <div class="form-group">
+                <label for="cpwrd">Confirm Password</label>
+                <input type="password" name="cpwrd" placeholder="Confirm new password" required>
+            </div>
+            <input class="submit-btn" type="submit" value="Reset Password">
+        </form>
+    </div>
+</body>
+</html>

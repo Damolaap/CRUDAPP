@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Signup</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <p class="message">{{ message }}</p>
+            <a class="login-link" href="/login/">Login</a>
+            <div class="form-group">
+                <label for="fname">Firstname</label>
+                <input type="text" name="fname" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="lname">Lastname</label>
+                <input type="text" name="lname" placeholder="Enter your last name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Enter your username" required>
+            </div>
+
+            {% comment %} <div class="form-group">
+                <label for="gender">Gender</label>
+                <select name="gender" required>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="NB">Non-Binary</option>
+                    <option value="O" selected='selected'>Other</option>
+                </select>
+            </div> {% endcomment %}
+
+            {% comment %} <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" name="age" placeholder="Enter your age" required>
+            </div> {% endcomment %}
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="pwrd">Password</label>
+                <input type="password" name="pwrd" placeholder="Enter your password" required>
+            </div>
+            <input class="submit-btn" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

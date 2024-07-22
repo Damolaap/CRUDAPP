@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Profile</h1>
+        <div class="links">
+            <a href="/index/">Home</a>
+            <a href="/edit-profile/">Edit Profile</a>
+        </div>
+        
+        {% for message in messages %}
+            <p class="message">{{message}}</p>
+        {% endfor %}
+        
+        <div class="profile-info">
+            <p>Firstname: {{ user.first_name }}</p>
+            <p>Lastname: {{ user.last_name }}</p>
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Gender: {{ user_bio.gender }}</p>
+            <p>Age: {{ user_bio.age }}</p>
+            <p>Phone Number: {{ user_bio.phone_num }}</p>
+            <p>Country: {{ user_bio.country }}</p>
+            <p>Number of posts: {{ posts_num }}</p>
+            <p>About: {{ user_bio.about }}</p>
+        </div>
+        
+        <div class="post-form-container">
+            <h3>Create or Edit Post Here</h3>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <textarea name="post_title" placeholder="Post Title" rows="2" required>{% if post %}{{ post.post_title }}{% endif %}</textarea>
+                </div>
+                <div class="form-group">
+                    <textarea name="post_body" placeholder="Post Content" rows="10" required>{% if post %}{{ post.post_body }}{% endif %}</textarea>
+                </div>
+                <div class="form-group">
+                    <input class="submit-btn" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

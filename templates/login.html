@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <p>Login to your account.</p>
+        
+        {% for message in messages %}
+            <p class="message" style="color: green;">{{message}}</p>
+        {% endfor %}
+            
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if error_message %}
+                <div class="error-message">{{ error_message }}</div>
+            {% endif %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="pwrd">Password</label>
+                <input type="password" id="pwrd" name="pwrd" placeholder="Enter your password" required>
+            </div>
+            <input class="submit-btn" type="submit" value="Login">
+        </form>
+        
+        <div class="forgot-password">
+            <a href="/pwrdreset/">Forgot Password?</a>
+        </div>
+        <div class="register">
+            <a href="/sign-up/">Register</a>
+        </div>
+    </div>
+</body>
+</html>
