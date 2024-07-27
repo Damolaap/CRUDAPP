@@ -109,7 +109,7 @@ def show_profile(request):
         return redirect('/index/')
     
     posts_num = len(Post.objects.filter(owner = user))
-    user_bio = UserBio.objects.get(owner = user)
+    user_bio = UserBio.objects.filter(owner = user).first()
     context = {
         'user' : user,
         'posts_num' : posts_num,
@@ -120,7 +120,7 @@ def show_profile(request):
 @login_required
 def edit_profile(request):
     user = User.objects.get(username = request.user)
-    user_bio = UserBio.objects.get(owner = user)
+    user_bio = UserBio.objects.filter(owner = user).first()
 
     if request.method == 'POST':
         # User model
@@ -140,6 +140,7 @@ def edit_profile(request):
         user.last_name = new_lname
         user.email = new_email
 
+        user_bio.owner = user
         user_bio.gender = new_gender
         user_bio.age = new_age
         user_bio.phone_num = new_phone_num
