@@ -208,14 +208,6 @@ def single_post(request, id):
     }
     return render(request, 'single_post.html', context)
 
-class Login_form(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password')
 
-# class ProfileEdit_form(forms.ModelForm):
-#     class Meta:
-#         model = UserBio
-#         fields = ('')
 
 # Create your views here.
